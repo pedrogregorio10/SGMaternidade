@@ -14,7 +14,6 @@ use App\Http\Controllers\Backend\Admin\ProntuarioController;
 
 use Illuminate\Support\Facades\Route;
 
-
 //Admin Routes
 Route::controller(AdminController::class)->group(function (){
 
@@ -40,12 +39,23 @@ Route::resource('paciente', PacienteController::class)->middleware(['auth','admi
 
 Route::resource('medico', MedicoController::class)->middleware(['auth','admin']);
 
-Route::resource('escala', EscalaController::class)->middleware(['auth','admin']);
+Route::resource('escala', EscalaController::class)->middleware(['auth']);
 
-Route::resource('agendamento', AgendamentoController::class)->middleware(['auth','admin']);
+Route::get('agendamento', [AgendamentoController::class,'index'])->name('agendamento.index')->middleware(['auth','admin']);
 
-Route::get('listar/agenda', [AgendamentoController::class,'listar'])->name('listar.agenda');
+Route::get('agendamento/create', [AgendamentoController::class,'create'])->name('agendamento.create')->middleware(['auth','admin']);
 
-Route::get('admin/agendar/consulta/{id}', [AgendamentoController::class,'agendar'])->name('criar.agenda');
+Route::get('agendamento/{agendamento}', [AgendamentoController::class,'show'])->name('agendamento.show')->middleware(['auth','admin']);
 
-Route::resource('prontuario', ProntuarioController::class);
+Route::get('agendamento/{agendamento}\edit', [AgendamentoController::class,'edit'])->name('agendamento.edit')->middleware(['auth','admin']);
+
+Route::post('agendamento', [AgendamentoController::class,'store'])->name('agendamento.store')->middleware(['auth']);
+
+Route::put('agendamento/{agendamento}', [AgendamentoController::class,'update'])->name('agendamento.update')->middleware(['auth']);
+
+Route::delete('agendamento/{agendamento}', [AgendamentoController::class,'destroy'])->name('agendamento.destroy')->middleware(['auth']);
+
+
+Route::get('listar/agenda', [AgendamentoController::class,'listar'])->name('listar.agenda')->middleware(['auth','admin']);
+
+Route::get('admin/agendar/consulta/{id}', [AgendamentoController::class,'agendar'])->name('criar.agenda')->middleware(['auth','admin']);

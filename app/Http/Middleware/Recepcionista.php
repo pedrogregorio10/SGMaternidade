@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Usuario
+class Recepcionista
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,9 @@ class Usuario
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->tipo !== 'user'){
-            dd('user route, go out');
-            //return redirect()->route('index');
+        if(auth()->user()->tipo !== 'recep'){
+            dd('rota do recepcionista');
+            //return redirect()->intended(route('index'));
         }
         return $next($request);
     }

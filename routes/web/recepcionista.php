@@ -17,7 +17,7 @@ Route::controller(RecepcionistaController::class)->group(function (){
 
     Route::get('recepcionista/escala', 'listarAgendaDisponivel')->name('recepcionista.listar.agenda');
 
-    Route::get('recepcionista/agendar', 'agendaConsulta')->name('recepcionista.agendar');
+    Route::get('recepcionista/{id}/agendar', 'agendarConsulta')->name('recepcionista.agendar');
 });
 
 Route::resource('recepcionista', RecepcionistaController::class);

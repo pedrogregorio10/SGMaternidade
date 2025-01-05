@@ -32,15 +32,17 @@ class AuthenticatedSessionController extends Controller
         if (auth()->user()->tipo === 'admin') {
             return redirect()->route('admin.dashboard');
         }
-        if (auth()->user()->tipo === 'med') {
+        else if (auth()->user()->tipo === 'med') {
             return redirect()->route('view.medico.dashboard');
         }
-        if(auth()->user()->tipo === 'recep'){
+        else if(auth()->user()->tipo === 'recep'){
             return redirect()->route('recepcionista.dashboard');
         }
 
-        //Redireciona para a rota geral caso não seja admin
+        return redirect()->back();
 
+
+        //Redireciona para a rota geral caso não seja admin
     }
 
     /**

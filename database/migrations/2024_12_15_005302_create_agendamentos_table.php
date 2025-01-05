@@ -20,14 +20,11 @@ return new class extends Migration
             $table->string('municipio');
             $table->string('telefone');
             $table->enum('estado',['solteiro/a','casado/a']);
-            $table->enum('tipo', ['pos', 'pre']); // Tipo de consulta
-
+            $table->enum('tipo', ['pos', 'pre']);
             $table->foreignId('id_medico')->constrained('users')->onDelete('cascade');
-
             $table->foreignId('id_escala')->constrained('escalas')->onDelete('cascade');
-
             $table->enum('status', ['confirmado', 'cancelado'])->default('confirmado');
-            $table->string('observacoes')->nullable(); // Observações adicionais para o agendamento
+            $table->string('motivo')->nullable();
             $table->timestamps();
         });
     }

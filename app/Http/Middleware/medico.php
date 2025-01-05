@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class medico
+class Medico
 {
     /**
      * Handle an incoming request.
@@ -14,8 +14,8 @@ class medico
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {   
-        
+    {
+
         if(auth()->user()->tipo !== 'med'){
             dd('ROTA MEDICO, FOGE DAQUI');
         }

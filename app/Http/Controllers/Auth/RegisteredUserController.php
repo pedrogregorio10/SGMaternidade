@@ -51,10 +51,14 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        if($request->tipo=='admin'){
-            return redirect(route('admin.dashboard', absolute: false));
-        }else{
-            return redirect(route('dashboard', absolute: false));
+        if ($request->tipo === 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+        if ($request->tipo === 'med') {
+            return redirect()->route('view.medico.dashboard');
+        }
+        if($request->tipo === 'recep'){
+            return redirect()->route('recepcionista.dashboard');
         }
 
     }

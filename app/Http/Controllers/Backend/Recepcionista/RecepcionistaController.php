@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Recepcionista;
 
 use App\Models\Paciente;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DataTables\Recepcionista\PacienteDataTable;
