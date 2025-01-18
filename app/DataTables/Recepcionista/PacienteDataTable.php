@@ -23,9 +23,9 @@ class PacienteDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('editar', function($query){
-            $show = '<a class="btn btn-info" href="'.route('recepcionista.show',$query->id).'" style="margin-bottom:5px"><i class=" far fa-eye"></i></a>';
+            $show = '<a class="btn btn-info" href="'.route('recepcionista.paciente.show',$query->id).'" style="margin-bottom:5px"><i class=" far fa-eye"></i></a>';
 
-            $edit = '<a class="btn btn-primary" href="'.route('recepcionista.edit',$query->id).'" style="margin-bottom:5px"><i class="far fa-edit"></i></a>';
+            $edit = '<a class="btn btn-primary" href="'.route('recepcionista.paciente.edit',$query->id).'" style="margin-bottom:5px"><i class="far fa-edit"></i></a>';
 
             $delete = '<a href="'.route('paciente.destroy',$query->id).'" class="btn btn-danger delete-item"><i class="far fa-trash-alt"></i></a>';
             return $show.$edit.$delete;

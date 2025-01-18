@@ -35,9 +35,9 @@ class AgendamentoDataTable extends DataTable
         })
         ->addColumn('editar', function($query){
 
-            $show = '<a class="btn btn-info" href="'.route('agendamento.show',$query->id).'" style="margin-bottom:5px"><i class=" far fa-eye"></i></a>';
+            $show = '<a class="btn btn-info" href="'.route('recepcionista.agendamento.show',$query->id).'" style="margin-bottom:5px"><i class=" far fa-eye"></i></a>';
 
-            $edit = '<a class="btn btn-primary" href="'.route('agendamento.edit',$query->id).'" style="margin-bottom:5px"><i class="far fa-edit"></i></a>';
+            $edit = '<a class="btn btn-primary" href="'.route('recepcionista.agendamento.edit',$query->id).'" style="margin-bottom:5px"><i class="far fa-edit"></i></a>';
 
             $delete = '<a href="'.route('agendamento.destroy',$query->id).'" class="btn btn-danger delete-item"><i class="far fa-trash-alt"></i></a>';
             return $show.$edit.$delete;

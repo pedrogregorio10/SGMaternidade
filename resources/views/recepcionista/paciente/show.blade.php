@@ -26,7 +26,7 @@
                 <div class="card-header" >
                     <h4>Visualizar paciente</h4>
                     <div class="card-header-action">
-                        <a class="btn btn-primary" href="{{ route('recepcionista.create') }}">Cadastrar novo</a>
+                        <a class="btn btn-primary" href="{{ route('recepcionista.paciente.create') }}">Cadastrar novo</a>
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
                         </ul>
 
                         <div class="d-flex justify-content-end mt-5 mb-3 mr-3">
-                            <a class="btn btn-primary btn-lg " href="{{ route('recepcionista.edit',$paciente->id) }}">Editar dados</a>
+                            <a class="btn btn-primary btn-lg " href="{{ route('recepcionista.paciente.edit',$paciente->id) }}">Editar dados</a>
                         </div>
                 </div>
                 </div>

@@ -13,7 +13,7 @@ class AgendarController extends Controller
        /**
      * Display a listing of the resource.vv
      */
-    public function index(Request $request)
+    public function lista_agenda_disponivel(Request $request)
     {
 
         $users = User::with('escala')
@@ -41,7 +41,7 @@ class AgendarController extends Controller
         return view('usuario/agendar/index', compact('users'));
     }
 
-    public function getMedico($id)
+    public function fazer_agendamento($id)
     {
             $user = User::where('id', $id)
                           ->where('tipo', 'med')

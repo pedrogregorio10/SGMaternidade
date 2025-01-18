@@ -39,7 +39,7 @@ class ConsultaController extends Controller
     }
 
 
-    public function consulta($id)
+    public function confirmarConsulta($id)
     {
         // Busca o agendamento
         $agendamento = Agendamento::findOrFail($id);
@@ -66,11 +66,8 @@ class ConsultaController extends Controller
         $consulta =
         Consulta::where('id_paciente',$paciente->id)
         ->where('id_medico', $agendamento->id_medico)
-        ->whereHas('medico', function($query) use($agendamento){
-            $query->whereHas('escala', function($query) use($agendamento){
-                $query->where('id',$agendamento->id_escala);
-            })->with('escala');
-        })->with('medico')->first();
+        ->where('id_escala',$agendamento->id_escala)->first();
+
         if ($consulta) {
             toastr()->warning('Essa consulta já foi marcada anteriormente.');
             return redirect()->back();

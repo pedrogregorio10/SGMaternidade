@@ -15,9 +15,8 @@ class Recepcionista
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->tipo !== 'recep'){
-            dd('rota do recepcionista');
-            //return redirect()->intended(route('index'));
+        if((auth()->user()->tipo !== 'recep') && (auth()->user()->tipo !== 'admin')){
+            return redirect()->intended(route('index'));
         }
         return $next($request);
     }

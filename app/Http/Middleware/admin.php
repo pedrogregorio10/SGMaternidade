@@ -17,8 +17,7 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
             if(Auth::user()->tipo !== 'admin' ){
-            //return redirect()->intended(route('index'));
-            dd('rota admin, saia daqui');
+            return redirect()->intended(route('index'));
             }
         return $next($request);
     }

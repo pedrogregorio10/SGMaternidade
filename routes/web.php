@@ -16,8 +16,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('agendar', [AgendarController::class, 'index'])->name('agendar.index');
-Route::get('agendar/{id}', [AgendarController::class, 'getMedico'])->name('agendar.getMedico');
+Route::get('agendar', [AgendarController::class, 'lista_agenda_disponivel'])->name('agendar.index')->middleware(['auth']);
+
+Route::get('registrar/agendamento/{id}', [AgendarController::class, 'fazer_agendamento'])->name('agendar.getMedico')->middleware(['auth']);
 
 
 

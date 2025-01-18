@@ -16,8 +16,8 @@ class Medico
     public function handle(Request $request, Closure $next): Response
     {
 
-        if(auth()->user()->tipo !== 'med'){
-            dd('ROTA MEDICO, FOGE DAQUI');
+        if((auth()->user()->tipo !== 'med') || (auth()->user()->tipo !== 'admin')){
+            return redirect()->intended(route('index'));
         }
         return $next($request);
     }

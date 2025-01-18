@@ -39,23 +39,51 @@ Route::resource('paciente', PacienteController::class)->middleware(['auth','admi
 
 Route::resource('medico', MedicoController::class)->middleware(['auth','admin']);
 
-Route::resource('escala', EscalaController::class)->middleware(['auth']);
+Route::resource('escala', EscalaController::class)->middleware(['auth','admin']);
 
-Route::get('agendamento', [AgendamentoController::class,'index'])->name('agendamento.index')->middleware(['auth','admin']);
+//Agendamento route
+Route::controller(AgendamentoController::class)->group(
+    function () {
 
-Route::get('agendamento/create', [AgendamentoController::class,'create'])->name('agendamento.create')->middleware(['auth','admin']);
+Route::get('agendamento','index')->name('agendamento.index')->middleware(['auth','admin']);
 
-Route::get('agendamento/{agendamento}', [AgendamentoController::class,'show'])->name('agendamento.show')->middleware(['auth','admin']);
+Route::get('agendamento/create','create')->name('agendamento.create')->middleware(['auth','admin']);
 
-Route::get('agendamento/{agendamento}\edit', [AgendamentoController::class,'edit'])->name('agendamento.edit')->middleware(['auth','admin']);
+Route::get('agendamento/{agendamento}','show')->name('agendamento.show')->middleware(['auth','admin']);
 
-Route::post('agendamento', [AgendamentoController::class,'store'])->name('agendamento.store')->middleware(['auth']);
+Route::get('agendamento/{agendamento}/edit','edit')->name('agendamento.edit')->middleware(['auth','admin']);
 
-Route::put('agendamento/{agendamento}', [AgendamentoController::class,'update'])->name('agendamento.update')->middleware(['auth']);
+Route::post('agendamento','store')->name('agendamento.store')->middleware(['auth']);
 
-Route::delete('agendamento/{agendamento}', [AgendamentoController::class,'destroy'])->name('agendamento.destroy')->middleware(['auth']);
+Route::put('agendamento/{agendamento}','update')->name('agendamento.update')->middleware(['auth']);
 
+Route::delete('agendamento/{agendamento}','destroy')->name('agendamento.destroy')->middleware(['auth']);
 
-Route::get('listar/agenda', [AgendamentoController::class,'listar'])->name('listar.agenda')->middleware(['auth','admin']);
+Route::get('listar/agenda','listar')->name('listar.agenda')->middleware(['auth','admin']);
 
-Route::get('admin/agendar/consulta/{id}', [AgendamentoController::class,'agendar'])->name('criar.agenda')->middleware(['auth','admin']);
+Route::get('admin/agendar/consulta/{id}','agendar')->name('criar.agenda')->middleware(['auth','admin']);
+});
+
+//Paciente route
+Route::controller(PacienteController::class)->group(
+    function () {
+
+Route::get('paciente','index')->name('paciente.index')->middleware(['auth','admin']);
+
+Route::get('paciente/create','create')->name('paciente.create')->middleware(['auth','admin']);
+
+Route::get('paciente/{paciente}','show')->name('paciente.show')->middleware(['auth','admin']);
+
+Route::get('paciente/{paciente}/edit','edit')->name('paciente.edit')->middleware(['auth','admin']);
+
+Route::post('paciente','store')->name('paciente.store')->middleware(['auth']);
+
+Route::put('paciente/{paciente}','update')->name('paciente.update')->middleware(['auth']);
+
+Route::delete('paciente/{paciente}','destroy')->name('paciente.destroy')->middleware(['auth']);
+
+Route::get('listar/agenda','listar')->name('listar.agenda')->middleware(['auth','admin']);
+
+Route::get('admin/agendar/consulta/{id}','agendar')->name('criar.agenda')->middleware(['auth','admin']);
+});
+

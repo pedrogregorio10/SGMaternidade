@@ -37,6 +37,38 @@
                 </div>
 
                 <div class="card-body">
+                    <form action="{{ route('recepcionista.listar.agenda') }}" method="GET" class="mb-4">
+                        <div class="row">
+                            <!-- Filtro por Nome -->
+                            <div class="col-md-4">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Buscar por nome" value="{{ request('name') }}">
+                            </div>
+
+                            <!-- Filtro por Especialidade -->
+                            <div class="col-md-4">
+                                <label for="especialidade" class="form-label">Especialidade</label>
+                                <input type="text" class="form-control" id="especialidade" name="especialidade" placeholder="Buscar por especialidade" value="{{ request('especialidade') }}">
+                            </div>
+
+                            <!-- Filtro por Data -->
+                            <div class="col-md-4">
+                                <label for="data" class="form-label">Data</label>
+                                <input type="date" class="form-control" id="data" name="data" value="{{ request('data') }}">
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-3">
+                            <button type="submit" class="btn btn-primary">Filtrar</button>
+                            <a href="{{ route('recepcionista.listar.agenda') }}" class="btn btn-secondary ms-2">Limpar</a>
+                        </div>
+                    </form>
+
+                    @if (session('erro'))
+                    <div class="alert alert-danger">
+                    {{ session('erro') }}
+                    </div>
+                    @endif
 
                     @foreach ($users as $user)
 

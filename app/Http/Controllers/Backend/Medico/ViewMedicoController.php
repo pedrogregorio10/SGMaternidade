@@ -30,13 +30,34 @@ class ViewMedicoController extends Controller
     }
 
     //Listar todos os medicos disponiveis para consulta
-    public function listar()
+    public function listar(Request $request)
     {
-
-            return view('medico/agendamento/listar');
-
+            $users = User::with('escala')
+            ->where('tipo', 'med')
+            ->whereHas('escala',function ($query) {
+                $query->where('quantidade', '>', 0);
+            });
+            if ($request->filled('name')) {
+              $users->where('name', 'like', '%' . $request->name . '%');
+            }
+            if ($request->filled('especialidade')) {
+                $users = $users->whereHas('medico', function ($query) use ($request) {
+                    $query->where('especialidade', 'like', '%' . $request->especialidade . '%');
+                })->with('medico');
+            }
+            if ($request->filled('data')) {
+                $users =  $users->whereHas('escala', function ($query) use ($request) {
+                    $query->where('data', $request->data);
+                })->with('escala');
+            }
+            $users = $users->get();
+            if($users->isEmpty()){
+                session()->flash('erro', 'Nenhum médico disponível para agendamento no momento.');
+            }
+            return view('medico/agendamento/listar', compact('users'));
     }
-    //Agendar consulta
+
+
     public function agendar($id)
     {
             $user = User::where('id', $id)

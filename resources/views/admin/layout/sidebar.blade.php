@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2" style="background-color: #34495E">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="{{ route('admin.dashboard') }}">
+        <a href="{{ route('index') }}">
             <img src="{{ asset('estilo/ngangula.jpg') }}" alt="" width="200" height="50"><br>
             Hospital Ngangula
         </a>
@@ -12,7 +12,7 @@
       <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
         <li class="dropdown active">
-          <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Painel Administrador</span></a>
+          <a href="{{ route('admin.dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Painel Administrador</span></a>
         </li>
         <li class="menu-header">Starter</li>
         <li class="dropdown">
@@ -55,7 +55,6 @@
             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Gerencie Prontuario</span></a>
               <ul class="dropdown-menu">
                   <li><a class="nav-link" href="{{ route('agendamento.index') }}">Lista de Prontuario</a></li>
-                  <li><a class="nav-link" href="{{  route('agendamento.create') }}">Criar prontuario</a></li>
                 </ul>
           </li>
       </ul>

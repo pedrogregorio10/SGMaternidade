@@ -51,7 +51,7 @@
                         </ul>
 
                         <div class="d-flex justify-content-end mt-5 mb-3 mr-3">
-                            <a class="btn btn-primary btn-lg mr-3" href="{{ route('agendamento.edit',$agendamento->id) }}">Editar agendamento</a>
+                            <a class="btn btn-primary btn-lg mr-3" href="{{ route('recepcionista.agendamento.edit',$agendamento->id) }}">Editar agendamento</a>
                             <a class="btn btn-success btn-lg " href="{{ route('view.medico.consulta',$agendamento->id) }}">Confirmar consulta</a>
                         </div>
                 </div>

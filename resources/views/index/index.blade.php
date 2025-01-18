@@ -85,14 +85,35 @@
                     <a href="{{ route('register') }}" class="btn btn-skin btn-lg" style="background-color:#28a745">Registrar<i class="fa-solid fa-right-to-bracket"></i></a>
                     <a href="{{ route('login') }}" class="btn btn-skin btn-lg" style="background-color: #007BFF">Fazer login <i class="fa-solid fa-right-to-bracket"></i></a>
                     @endguest
-                <li>
+
                     @auth
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button class="btn btn-danger btn-lg" type="submit">Sair
-                        </button>
-                    </form>
-                    @endauth</li>
+
+                    @if (auth()->user()->tipo === 'admin')
+
+                    <li class="ml-3"><a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Painel Administrador<i class="fa-solid fa-right-to-bracket"></i></a></li>
+                    @endif
+                    @if (auth()->user()->tipo === 'med')
+
+                    <li><a href="{{ route('view.medico.dashboard') }}" class="btn btn-skin btn-lg">Painel Medico<i class="fa-solid fa-right-to-bracket"></i></a></li>
+                    @endif
+
+                    @if (auth()->user()->tipo === 'recep')
+
+                    <li><a href="{{ route('recepcionista.dashboard') }}" class="btn btn-skin btn-lg">Painel Recepcionista<i class="fa-solid fa-right-to-bracket"></i></a></li>
+                    @endif
+
+                    @if (auth()->user()->tipo === 'user')
+                    <li><a href="{{ route('agendar.index') }}" class="btn btn-skin btn-lg">Agendar Consulta<i class="fa-solid fa-right-to-bracket"></i></a></li>
+                    @endif
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button class="btn btn-danger btn-lg" type="submit">Sair
+                            </button>
+                        </form>
+                        </li>
+
+                    @endauth
 			  </ul>
 
             </div>

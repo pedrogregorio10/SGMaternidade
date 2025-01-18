@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2" style="background-color: #1e3a1e">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="{{ route('view.medico.dashboard') }}"><img src="{{ asset('estilo/ngangula.jpg') }}" alt="" width="200" height="50"></a>
+        <a href="{{ route('index') }}"><img src="{{ asset('estilo/ngangula.jpg') }}" alt="" width="200" height="50"></a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
         <a href="index.html">St</a>
@@ -9,7 +9,7 @@
       <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
         <li class="dropdown active">
-          <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Painel do Medico</span></a>
+          <a href="{{ route('view.medico.dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Painel do Medico</span></a>
         </li>
         <li class="menu-header">Starter</li>
 

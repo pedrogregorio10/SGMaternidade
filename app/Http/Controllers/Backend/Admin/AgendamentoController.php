@@ -38,7 +38,7 @@ class AgendamentoController extends Controller
         });
         if ($request->filled('name')) {
           $users->where('name', 'like', '%' . $request->name . '%');
-        };
+        }
         if ($request->filled('especialidade')) {
             $users = $users->whereHas('medico', function ($query) use ($request) {
                 $query->where('especialidade', 'like', '%' . $request->especialidade . '%');

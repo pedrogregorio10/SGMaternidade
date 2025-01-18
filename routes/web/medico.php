@@ -6,7 +6,7 @@ use App\Http\Controllers\Backend\Medico\ProntuarioController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::controller(ViewMedicoController::class)->group(function (){
+Route::middleware(['auth','medico'])->controller(ViewMedicoController::class)->group(function (){
 
     Route::get('view/medico/dashboard', 'dashboard')->name('view.medico.dashboard');
 
@@ -24,8 +24,9 @@ Route::controller(ViewMedicoController::class)->group(function (){
 
 });
 
-Route::resource('consulta', ConsultaController::class);
+Route::resource('consulta', ConsultaController::class)->middleware(['auth','medico']);
 
-Route::resource('prontuario', ProntuarioController::class);
-Route::get('medico/consulta/{id}', [ConsultaController::class, 'consulta'])->name('view.medico.consulta');
+Route::resource('prontuario', ProntuarioController::class)->middleware(['auth','medico']);
+
+Route::get('medico/consulta/{id}', [ConsultaController::class, 'confirmarConsulta'])->name('view.medico.consulta')->middleware(['auth']);//recep
 
